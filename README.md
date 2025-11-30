@@ -1,0 +1,1 @@
+# sthc-theme
