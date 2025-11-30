@@ -32,7 +32,7 @@ jobs:
           local_path: ./
 
           # remote path on your server
-          remote_path: /home/sthealthclub/www/wp-content/themes/sthc-theme
+          remote_path: /www/wp-content/themes/sthc-theme
 
           # if true, will delete remote files not in the repo (be careful!)
           delete_remote_files: false
