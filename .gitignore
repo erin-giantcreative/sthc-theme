@@ -11,12 +11,6 @@ yarn-error.log
 vendor/
 composer.lock
 
-# Build output
-dist/
-build/
-public/build/
-public/assets/
-
 
 # Logs
 *.log

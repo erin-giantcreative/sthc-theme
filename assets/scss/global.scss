@@ -2,45 +2,27 @@ body.material .ocm-effect-wrap .container-wrap {
   overflow: hidden;
 }
 body, html, .testimonial_slider:not([data-style*=multiple_visible]) blockquote, blockquote {
-  font-family: "Eina01-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.5;
-  @include desktop {
-    font-size: 20px;
-  }
 }
 p.kicker,
 .kicker p {
-  display: inline-block;
   color: $primary-color !important;
-  padding: 12px 24px !important;
-  background-image: url('/wp-content/uploads/2025/11/kicker-bg.jpg');
-  background-position: 50% 50%;
-  background-size: cover;
-  font-family: "Eina03-SemiBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 20px;
-  line-height: 1;
 }
-.md-text {
+.lg-text {
   font-size: 18px;
 }
-.sm-text {
-  font-size: 16px;
+.xl-text {
+  font-size: 20px;
 }
-.xs-text {
+.sm-text {
   font-size: 14px;
 }
 .bold, b, strong {
-  font-family: "Eina01-SemiBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-.jet-set {
-  color: $grey !important;
 }
 h1, .heading-h1 {
-  font-family: "Eina03-Bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 46px;
-  line-height: 1.08;
   @include tablet {
     font-size: 52px;
   }
@@ -53,9 +35,7 @@ h1, .heading-h1 {
 }
 h2, .heading-h2,
 .h2 h3 {
-  font-family: "Eina03-Bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 36px;
-  line-height: 1;
   @include mobile {
     br {
       display: none;
@@ -78,8 +58,6 @@ h2, .heading-h2,
 .heading-h3,
 h3 {
   font-size: 24px !important;
-  font-family: "Eina03-SemiBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  line-height: 1.16 !important;
   @include mobile {
     br {
       display: none;
@@ -97,26 +75,16 @@ h3 {
 .heading-h4,
 h4 {
   font-size: 24px;
-  font-family: "Eina03-SemiBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-style: normal;
-  line-height: 1.16;
 }
 
 h5, .heading-5 {
   font-size:18px;
-  font-family: "Eina03-SemiBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-style: normal;
-  line-height: 1.16;
   @include tablet_up {
     font-size:20px;
   }
 }
 h6, .heading-6 {
   font-size:16px;
-  font-family: "Eina03-SemiBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.16;
   @include tablet_up {
     font-size:18px;
   }
@@ -154,7 +122,7 @@ ul:last-child {
           position: relative;
           display: inline;
           text-decoration: none;
-          background-image: linear-gradient(#997F52, #997F52);
+          background-image: linear-gradient(#FDDC5C, #FDDC5C);
           background-repeat: no-repeat;
           background-size: 100% 2px;
           background-position: left bottom;
@@ -182,7 +150,6 @@ ul:last-child {
 }
 /* BUTTON */
 body .col .nectar-button[data-color-override="false"].nectar-button {
-  font-family: "Eina01-Bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
   border-radius: 0 !important;
   -webkit-border-radius: 0 !important;
   color: $white !important;
@@ -208,44 +175,10 @@ body .col .nectar-button[data-color-override="false"].nectar-button {
       width: 100%;
     }
   }
-  &:not(:last-child):not(.no-margin) {
-    margin-bottom: 16px !important;
-    @include tablet {
-      &.no-margin-t {
-        margin-bottom: 0px !important;
-      }
-    }
-    @include desktop {
-      &.no-margin-d {
-        margin-bottom: 0px !important;
-      }
-    }
-  }
   &:hover {
     color: $primary-color !important;
     background-color: transparent !important;
     opacity: 1;
-  }
-  &.mobile-phone-link {
-    display: inline-flex !important;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    &::before {
-      content: '';
-      display: block;
-      background-image: url('/wp-content/uploads/2025/11/phone.svg');
-      background-position: 50% 50%;
-      background-repeat: no-repeat;
-      background-size: 18px;
-      width: 20.2px;
-      height: 18px;
-    }
-    &:hover {
-      &:before {
-        filter: brightness(0%);
-      }
-    }
   }
   @include mobile {
     &.hide-mobile {
@@ -263,27 +196,7 @@ body .col .nectar-button[data-color-override="false"].nectar-button {
       display: none !important;
     }
   }
-  &.extra-color-1 {
-    background-color: $white !important;
-    border-color: $white;
-    color: $primary-color !important;
-    &.mobile-phone-link {
-      &::before {
-        filter: brightness(0%);
-      }
-      &:hover {
-        &:before {
-          filter: brightness(100%);
-        }
-      }
-    }
-    &:hover {
-      color: $white !important;
-      background-color: transparent !important;
-    }
-  }
   &.see-through {
-    font-size: 15px;
     padding: 0 !important;
     margin-top: -5px !important;
     line-height: 1;
@@ -301,27 +214,6 @@ body .col .nectar-button[data-color-override="false"].nectar-button {
       transform: none !important;
       &:before {
         font-weight: 900;
-      }
-    }
-  }
-  &.shop-now {
-    i {
-      width: 12px;
-      height: 12px;
-      aspect-ratio: 1 / 1;
-      &:before {
-        content: '';
-        display: block;
-        width: 12px;
-        height: 12px;
-        aspect-ratio: 1 / 1;
-        background-size: contain;
-        background-image: url('/wp-content/uploads/2025/11/external-link.svg');
-      }
-    }
-    &:hover {
-      i:before {
-        filter: brightness(0%);
       }
     }
   }

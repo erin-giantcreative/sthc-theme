@@ -24,57 +24,7 @@ body {
           width: 22px !important;
         }
       }
-      .col.span_3 {
-        @include desktop {
-          display: flex;
-          flex-direction: row-reverse;
-          align-items: center;
-          gap: 12px;
-          margin-right: 12px;
-          &::after {
-            display: none;
-          }
-          .header-review-logo {
-            display: block;
-            img {
-              margin-bottom: 0;
-            }
-          }
-          @include xl_desktop {
-            gap: 24px;
-          }
-        }
-        @media screen and (max-width: 1024px) {
-          .header-review-logo {
-            display: none;
-          }
-        }
-        #logo {
-          svg {
-            max-height: 50px;
-            @include xl_desktop {
-              max-height: 54px;
-            }
-          }
-          .dark-version {
-            position: relative;
-          }
-        }
-      }
       .col.span_9 {
-        @include touch_screen {
-          flex-direction: row-reverse;
-          gap: 24px;
-          nav {
-            display: block !important;
-            ul {
-              padding: 0;
-              > li:not(:last-child) {
-                display: none;
-              }
-            }
-          }
-        }
         nav {
           > ul {
             > li:not(.header-btn) {
@@ -85,10 +35,6 @@ body {
                 }
               }
               > a {
-                font-size: 16px;
-                font-family: "Eina01-SemiBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
-                white-space: nowrap;
-                line-height: 1;
                 transition: all 0.45s ease;
                 span:after {
                   max-width: 40%;
@@ -96,39 +42,9 @@ body {
                 }
               }
             }
-            > li.shop-link {
-              a {
-                display: flex;
-                flex-direction: row-reverse;
-                align-items: flex-start;
-                gap: 6px;
-                .nectar-menu-icon-img {
-                  margin: 0;
-                  width: 12px;
-                  height: 12px;
-                  aspect-ratio: 1/1;
-                }
-              }
-            }
-            > li.phone-link {
-              a {
-                display: flex;
-                align-items: center;
-                gap: 8px;
-                font-size: 17px;
-                .nectar-menu-icon-img {
-                  margin: 0;
-                  width: 24px;
-                  padding: 2px 4px 4px;
-                  height: 24px;
-                  aspect-ratio: 1/1;
-                }
-              }
-            }
             > li.header-btn {
               a {
                 font-size: 16px;
-                font-family: "Eina01-SemiBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
                 white-space: nowrap;
                 padding: 15px 26px 13px;
                 color: $primary-color !important;
@@ -174,9 +90,7 @@ body {
               li {
                 margin-bottom: 0 !important;
                 a {
-                  font-family: "Eina01-SemiBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
                   padding: 22px 4px;
-                  font-size: 20px !important;
                   opacity: 1;
                   letter-spacing: normal;
                 }
@@ -201,7 +115,6 @@ body {
                   a {
                     display: inline-flex;
                     margin-top: 22px;
-                    font-family: "Eina01-SemiBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
                     white-space: nowrap;
                     padding: 15px 26px 13px;
                     color: $primary-color !important;
