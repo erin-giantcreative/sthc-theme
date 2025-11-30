@@ -1,4 +1,4 @@
-name: Deploy to cPanel
+name: Deploy to cPanel (FTP)
 
 on:
   push:
@@ -13,14 +13,18 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Upload files to cPanel via SFTP
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.CPANEL_HOST }}
-          port: 21
           username: ${{ secrets.CPANEL_USER }}
           password: ${{ secrets.CPANEL_PASSWORD }}
+
           protocol: ftp
-          local_path: ./
-          remote_path: /www/wp-content/themes/sthc-theme
-          delete_remote_files: false
+          port: 21
+
+          # local repo path
+          local-dir: ./
+
+          # remote path to your theme on the server
+          server-dir: /www/wp-content/themes/sthc-theme
