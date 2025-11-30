@@ -27,4 +27,4 @@ jobs:
           local-dir: ./
 
           # remote path to your theme on the server
-          server-dir: /www/wp-content/themes/sthc-theme
+          server-dir: /www/wp-content/themes/sthc-theme/
