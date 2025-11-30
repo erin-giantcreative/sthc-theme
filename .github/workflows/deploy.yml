@@ -36,11 +36,3 @@ jobs:
 
           # if true, will delete remote files not in the repo (be careful!)
           delete_remote_files: false
-
-          # optional: files/folders to exclude
-          exclude: |
-            .git*
-            .github*
-            node_modules
-            vendor
-            *.log
