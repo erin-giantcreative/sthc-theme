@@ -1,0 +1,93 @@
+@import '../variables';
+@import '../mixin';
+.thank-you {
+  &__our-experts {
+    > .row-bg-wrap {
+      .inner-wrap  {
+        .row-bg {
+          background-position: 55% 100% !important;
+        }
+      }
+    }
+    .row_col_wrap_12 {
+      @include sm_desktop {
+        > .vc_col-sm-12 {
+          .vc_column-inner {
+            .column-image-bg-wrap {
+              .inner-wrap {
+                .column-image-bg {
+                  background-position: 65% 50% !important;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  &__testimonial {
+    .row-bg-wrap {
+      .inner-wrap {
+        .row-bg {
+          @include tablet {
+            background-position: center center !important;
+          }
+          @include mobile {
+            background-position: right bottom !important;
+          }
+        }
+      }
+    }
+  }
+  &__faq {
+    @include desktop {
+      .column_element_direction_desktop_horizontal {
+        > .vc_column-inner {
+          > .wpb_wrapper {
+            justify-content: space-between;
+            .nectar-button {
+              white-space: nowrap;
+            }
+          }
+        }
+      }
+    }
+    div[data-style="minimal"] {
+      .toggle {
+        border-bottom: 1px solid $white;
+        .toggle-title {
+          a {
+            color: $white;
+            padding-top: 24px;
+            padding-bottom: 24px;
+          }
+          i {
+            &::before {
+              width: 24px;
+              top: 11px;
+              left: 0;
+              margin-top: 0;
+              background-color: $white;
+            }
+            margin-top: - 12px;
+            border: none;
+            width: 24px;
+            height: 24px;
+            &::after {
+              height: 24px;
+              top: 0;
+              left: 11px;
+              margin-left: 0;
+              background-color: $white;
+            }
+          }
+        }
+        > div {
+          .inner-toggle-wrap {
+            padding-bottom: 24px;
+          }
+        }
+      }
+    }
+  }
+}
