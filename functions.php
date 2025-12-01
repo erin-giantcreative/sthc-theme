@@ -19,6 +19,27 @@ function salient_child_enqueue_styles() {
   }
 }
 
+// Show content beside main logo.
+function sthc_header_logo_content() {
 
+  $beside_logo_text = get_field( 'beside_logo_text', 'option' );
+  $beside_logo_link = get_field( 'beside_logo_link', 'option' );
+
+  if ( ! $beside_logo_text && ! $beside_logo_link ) {
+    return;
+  }
+    $link_url = $beside_logo_link['url'];
+    $link_title = $beside_logo_link['title'];
+    $link_target = $beside_logo_link['target'] ? $link['target'] : '_self';
+
+  $content = '<div class="header-content">' .
+    '<span>' . $beside_logo_text . '</span>' .
+    '<a href="' . esc_url( $link_url ) . '" target="' . esc_attr( $link_target ) . '">' . esc_html( $link_title ) . '</a>' .
+  '</div>';
+
+  echo $content;
+}
+
+add_action( 'nectar_hook_before_logo', 'sthc_header_logo_content' );
 
 ?>
