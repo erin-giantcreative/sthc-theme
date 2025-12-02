@@ -4,7 +4,10 @@ body.material .ocm-effect-wrap .container-wrap {
 body, html, .testimonial_slider:not([data-style*=multiple_visible]) blockquote, blockquote {
   font-family: "Futura", "futura-pt", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
-  line-height: 1.44;
+  line-height: 1.37;
+}
+.kicker {
+  margin-bottom: 6px !important;
 }
 p.kicker,
 .kicker p {
@@ -59,8 +62,9 @@ body h1, .heading-h1 {
     font-size: 86px;
   }
 }
-body h2, .heading-h2,
-.h2 h3 {
+.toggle>h3.toggle-title a,
+.heading-h3,
+body h3 {
   font-size: 36px;
   @include mobile {
     br {
@@ -68,28 +72,28 @@ body h2, .heading-h2,
     }
   }
   @include tablet {
-    font-size:38px;
     br {
       display: none;
     }
   }
-  @include desktop {
-    font-size:46px;
-  }
 }
-.toggle>h3.toggle-title a,
-.heading-h3,
-body h3 {
+body h2,body h3.heading-h2,
+.h2 h3 {
   font-size: 36px !important;
+  line-height: 1.08 !important;
   @include mobile {
     br {
       display: none;
     }
   }
   @include tablet {
+    font-size:38px !important;
     br {
       display: none;
     }
+  }
+  @include desktop {
+    font-size:46px !important;
   }
 }
 .heading-h4,

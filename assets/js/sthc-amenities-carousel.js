@@ -108,12 +108,7 @@
       slides.forEach(function (slide, i) {
         var isActive = i === index;
         slide.classList.toggle('is-active', isActive);
-
-        if (isActive) {
-          slide.removeAttribute('hidden');
-        } else {
-          slide.setAttribute('hidden', 'hidden');
-        }
+        slide.setAttribute('aria-hidden', isActive ? 'false' : 'true');
       });
 
       currentIndex = index;

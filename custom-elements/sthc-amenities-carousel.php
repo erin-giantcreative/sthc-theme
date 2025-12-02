@@ -165,8 +165,8 @@ $use_cache = ! is_user_logged_in() && ! $is_preview;
 if ( $use_cache ) {
 	$cached = wp_cache_get( $cache_key, $cache_group );
 	if ( $cached ) {
-		echo $cached;
-		return;
+		//echo $cached;
+		//return;
 	}
 }
 
@@ -215,10 +215,6 @@ ob_start();
 						data-carousel-tab="<?php echo esc_attr( $index ); ?>"
 						data-autoplay-ms="<?php echo esc_attr( $autoplay_ms ); ?>"
 					>
-						<span class="sthc-amenities-carousel__nav-label">
-							<?php echo esc_html( $slide['label'] ); ?>
-						</span>
-
 						<!--
 							Progress indicator:
 							- Outer span holds the track.
@@ -231,6 +227,9 @@ ob_start();
 								class="sthc-amenities-carousel__nav-progress-bar"
 								data-carousel-progress-bar="1"
 							></span>
+						</span>
+						<span class="sthc-amenities-carousel__nav-label">
+							<?php echo esc_html( $slide['label'] ); ?>
 						</span>
 					</button>
 				<?php endforeach; ?>
@@ -268,14 +267,15 @@ ob_start();
 
 				$slide_class_attr = implode( ' ', array_map( 'sanitize_html_class', $slide_classes ) );
 				?>
-				<article
-					id="<?php echo esc_attr( $panel_id ); ?>"
-					class="<?php echo esc_attr( $slide_class_attr ); ?>"
-					role="tabpanel"
-					aria-labelledby="<?php echo esc_attr( $tab_id ); ?>"
-					<?php echo $is_active ? '' : 'hidden'; ?>
-					data-carousel-slide="<?php echo esc_attr( $index ); ?>"
-				>
+        <article
+          id="<?php echo esc_attr( $panel_id ); ?>"
+          class="<?php echo wp_kses_post( $slide_class_attr ); ?>"
+          role="tabpanel"
+          aria-labelledby="<?php echo esc_attr( $tab_id ); ?>"
+          aria-hidden="<?php echo $is_active ? 'false' : 'true'; ?>"
+          data-carousel-slide="<?php echo esc_attr( $index ); ?>"
+        >
+
 					<div class="sthc-amenities-carousel__media">
 						<?php
 						// Render the responsive background using <picture>.
@@ -349,7 +349,10 @@ ob_start();
 									rel="<?php echo esc_attr( $link['rel'] ); ?>"
 								<?php endif; ?>
 							>
-								<?php echo esc_html( $link_title ); ?>
+								<span><?php echo esc_html( $link_title ); ?></span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M8.08916 16.4226L6.91064 15.2441L12.1547 10L6.91064 4.75594L8.08916 3.57743L14.5117 10L8.08916 16.4226Z" fill="#FDDC5C" stroke="#FDDC5C"/>
+                </svg>
 							</a>
 						<?php endif; ?>
 					</div>
