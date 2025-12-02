@@ -42,4 +42,35 @@ function sthc_header_logo_content() {
 
 add_action( 'nectar_hook_before_logo', 'sthc_header_logo_content' );
 
+
+
+
+/**
+ * VC: STHC Image Gallery
+ */
+add_action( 'vc_before_init', 'sthc_register_image_gallery_element' );
+function sthc_register_image_gallery_element() {
+  if ( ! function_exists( 'vc_map' ) ) return;
+
+  vc_map( [
+    'name'          => __( 'STHC Image Gallery', 'salient-child' ),
+    'base'          => 'sthc_image_gallery',
+    'icon'          => 'icon-wpb-images-stack',
+    'category'      => __( 'Content', 'salient-child' ),
+    'description'   => __( 'Gallery that only takes multiple images', 'salient-child' ),
+    'html_template' => locate_template( 'custom-elements/sthc-image-gallery.php' ),
+    'params'        => [
+      [ 'type' => 'attach_images', 'heading' => __( 'Images', 'salient-child' ), 'param_name' => 'images', 'admin_label' => true ],
+      [ 'type' => 'textfield', 'heading' => __( 'Height (Desktop, px)', 'salient-child' ), 'param_name' => 'height_desktop', 'value' => '350' ],
+      [ 'type' => 'textfield', 'heading' => __( 'Height (Tablet, px)',  'salient-child' ), 'param_name' => 'height_tablet',  'value' => '280' ],
+      [ 'type' => 'textfield', 'heading' => __( 'Height (Mobile, px)',  'salient-child' ), 'param_name' => 'height_mobile',  'value' => '177' ],
+      [ 'type' => 'textfield', 'heading' => __( 'Gap (Desktop, px)',    'salient-child' ), 'param_name' => 'gap_desktop',    'value' => '12'  ],
+      [ 'type' => 'textfield', 'heading' => __( 'Gap (Tablet, px)',     'salient-child' ), 'param_name' => 'gap_tablet',     'value' => '12'  ],
+      [ 'type' => 'textfield', 'heading' => __( 'Gap (Mobile, px)',     'salient-child' ), 'param_name' => 'gap_mobile',     'value' => '12'  ],
+      [ 'type' => 'textfield', 'heading' => __( 'Radius (px)',          'salient-child' ), 'param_name' => 'radius',         'value' => '6'   ],
+      [ 'type' => 'textfield', 'heading' => __( 'Speed (seconds per loop)', 'salient-child' ), 'param_name' => 'speed', 'value' => '50' ],
+    ],
+  ] );
+}
+
 ?>

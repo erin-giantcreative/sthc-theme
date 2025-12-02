@@ -1,19 +1,19 @@
 body {
-  a {
-    white-space: nowrap;
-    text-decoration: none;
-    background-image: linear-gradient(#FDDC5C, #FDDC5C);
-    background-repeat: no-repeat;
-    background-size: 100% 2px;
-    background-position: left bottom;
-    animation: underlineShrink .3s cubic-bezier(0.25, 0, 0.4, 1) forwards;
-    &:hover {
-      opacity: 1;
-      text-decoration: none;
-      animation: underlineGrow .3s cubic-bezier(0.25, 0, 0.4, 1) forwards;
-    }
-  }
   #footer-outer {
+    a {
+      white-space: nowrap;
+      text-decoration: none;
+      background-image: linear-gradient(#FDDC5C, #FDDC5C);
+      background-repeat: no-repeat;
+      background-size: 100% 2px;
+      background-position: left bottom;
+      animation: underlineShrink .3s cubic-bezier(0.25, 0, 0.4, 1) forwards;
+      &:hover {
+        opacity: 1;
+        text-decoration: none;
+        animation: underlineGrow .3s cubic-bezier(0.25, 0, 0.4, 1) forwards;
+      }
+    }
     border-top: 1px solid $tertiary-color;
     #footer-widgets {
       .container {

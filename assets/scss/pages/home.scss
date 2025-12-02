@@ -1,2 +1,49 @@
 @import '../variables';
 @import '../mixin';
+
+.home-page {
+  &__hero {
+    .row_col_wrap_12 {
+      @include mobile {
+        padding: 40px 0 24px;
+      }
+      @include tablet {
+        padding: 50px 0 24px;
+      }
+      .vc_column-inner {
+        .nectar-star-rating {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 6px;
+          .nectar-star-rating__icon {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            &:before {
+              line-height: 24px;
+            }
+            &:after {
+              content: '4.5/5';
+              font-size: 12px;
+              font-weight: 500;
+              line-height: 1.33;
+              color: $tertiary-color;
+            }
+          }
+          .nectar-star-rating__content {
+            font-size: 18px;
+            margin-left: 0;
+          }
+          @include desktop {
+            display: none;
+          }
+        }
+        @include tablet {
+          .wpb_text_column.wpb_content_element.xl-text {
+            max-width: 100% !important;
+          }
+        }
+      }
+    }
+  }
+}
