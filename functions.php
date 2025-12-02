@@ -73,4 +73,150 @@ function sthc_register_image_gallery_element() {
   ] );
 }
 
+/**
+ * Register CSS/JS for STHC Amenities Carousel.
+ *
+ * These are only enqueued when the VC element is actually rendered,
+ * inside the template file. Here we just register handles and paths.
+ */
+add_action( 'wp_enqueue_scripts', 'sthc_register_amenities_carousel_assets', 5 );
+function sthc_register_amenities_carousel_assets() {
+
+	// Use the Salient theme version so browsers get a new file
+	// when you deploy updated assets.
+	if ( function_exists( 'nectar_get_theme_version' ) ) {
+		$version = nectar_get_theme_version();
+	} else {
+		$version = wp_get_theme()->get( 'Version' );
+	}
+
+	// CSS: compiled from your SCSS into this file.
+	wp_register_style(
+		'sthc-amenities-carousel',
+		get_stylesheet_directory_uri() . '/assets/css/sthc-amenities-carousel.min.css',
+		array(), // No dependencies.
+		$version
+	);
+
+	// JS: small vanilla script that controls autoplay, pausing,
+	// keyboard control, and the progress line for each slide.
+	wp_register_script(
+		'sthc-amenities-carousel',
+		get_stylesheet_directory_uri() . '/assets/js/sthc-amenities-carousel.js',
+		array(), // No dependencies – pure JS, no jQuery requirement.
+		$version,
+		true // Load in footer for better performance.
+	);
+}
+
+/**
+ * VC: STHC Amenities Carousel
+ *
+ * AODA–friendly carousel with:
+ * - Tab-style navigation across the top
+ * - One slide visible at a time
+ * - Per-slide autoplay timing
+ * - Pause-on-hover and a dedicated pause button
+ */
+add_action( 'vc_before_init', 'sthc_register_amenities_carousel_element' );
+function sthc_register_amenities_carousel_element() {
+	// Bail out early if WPBakery is not available.
+	if ( ! function_exists( 'vc_map' ) ) {
+		return;
+	}
+
+	vc_map( array(
+		'name'          => __( 'STHC Amenities Carousel', 'salient-child' ),
+		'base'          => 'sthc_amenities_carousel',
+		'icon'          => 'icon-wpb-images-carousel',
+		'category'      => __( 'Content', 'salient-child' ),
+		'description'   => __( 'Accessible carousel with tab-style navigation.', 'salient-child' ),
+
+		// This tells WPBakery to load our PHP template when the shortcode
+		// renders both in the editor and on the front end.
+		'html_template' => locate_template( 'custom-elements/sthc-amenities-carousel.php' ),
+
+		'params'        => array(
+
+			// Wrapper-level custom class. Lets you target a single instance.
+			array(
+				'type'        => 'textfield',
+				'heading'     => __( 'Wrapper Extra Class', 'salient-child' ),
+				'param_name'  => 'extra_class',
+				'description' => __( 'Optional extra CSS class for this carousel instance.', 'salient-child' ),
+			),
+
+			// Slides param group: each "row" here is one slide.
+			array(
+				'type'        => 'param_group',
+				'heading'     => __( 'Slides', 'salient-child' ),
+				'param_name'  => 'slides',
+				'description' => __( 'Define each slide in the carousel.', 'salient-child' ),
+				'params'      => array(
+
+					array(
+						'type'        => 'textfield',
+						'heading'     => __( 'Slide Navigation Name', 'salient-child' ),
+						'param_name'  => 'slide_label',
+						'admin_label' => true,
+						'description' => __( 'Label shown in the top navigation bar.', 'salient-child' ),
+					),
+
+					array(
+						'type'        => 'textfield',
+						'heading'     => __( 'Autoplay Duration (seconds)', 'salient-child' ),
+						'param_name'  => 'autoplay_seconds',
+						'value'       => '8',
+						'description' => __( 'How long this slide stays on screen before advancing.', 'salient-child' ),
+					),
+
+					array(
+						'type'       => 'attach_image',
+						'heading'    => __( 'Background Image (Desktop)', 'salient-child' ),
+						'param_name' => 'bg_desktop',
+					),
+
+					array(
+						'type'       => 'attach_image',
+						'heading'    => __( 'Background Image (Tablet)', 'salient-child' ),
+						'param_name' => 'bg_tablet',
+					),
+
+					array(
+						'type'       => 'attach_image',
+						'heading'    => __( 'Background Image (Mobile)', 'salient-child' ),
+						'param_name' => 'bg_mobile',
+					),
+
+					array(
+						'type'       => 'textfield',
+						'heading'    => __( 'Slide Extra Class', 'salient-child' ),
+						'param_name' => 'slide_class',
+						'description' => __( 'Optional extra CSS class for this slide.', 'salient-child' ),
+					),
+
+					array(
+						'type'       => 'textfield',
+						'heading'    => __( 'Title', 'salient-child' ),
+						'param_name' => 'title',
+					),
+
+					array(
+						'type'       => 'textarea',
+						'heading'    => __( 'Content', 'salient-child' ),
+						'param_name' => 'content',
+					),
+
+					array(
+						'type'       => 'vc_link',
+						'heading'    => __( 'Link', 'salient-child' ),
+						'param_name' => 'link',
+						'description' => __( 'Optional link (URL, text, target).', 'salient-child' ),
+					),
+				),
+			),
+		),
+	) );
+}
+
 ?>
