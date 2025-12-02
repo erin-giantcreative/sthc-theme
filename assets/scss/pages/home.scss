@@ -38,12 +38,31 @@
             display: none;
           }
         }
-        @include tablet {
-          .wpb_text_column.wpb_content_element.xl-text {
-            max-width: 100% !important;
-          }
-        }
       }
+    }
+  }
+  &__hero,
+  &__hero-slider {
+    .sthc-marquee::before,
+    .sthc-marquee::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      width: 123px; /* adjust to control fade width */
+      height: 100%;
+      pointer-events: none;
+      z-index: 2;
+      @include tablet_up {
+        width: 200px;
+      }
+    }
+    .sthc-marquee::before {
+      left: 0;
+      background: linear-gradient(90deg, #000 9.74%, rgba(255, 255, 255, 0.00) 95.9%);
+    }
+    .sthc-marquee::after {
+      right: 0;
+      background: linear-gradient(270deg, #000 9.74%, rgba(255, 255, 255, 0.00) 95.9%);
     }
   }
 }
