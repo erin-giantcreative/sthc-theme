@@ -17,6 +17,13 @@
       @include tablet {
         padding: 50px 0 24px;
       }
+      @include mobile {
+        .vc_col-sm-3\/5 {
+          .wpb_text_column {
+            font-size: 24px;
+          }
+        }
+      }
       .vc_column-inner {
         .nectar-star-rating {
           flex-direction: column;
@@ -74,6 +81,23 @@
   }
   &__pricing-section {
     .row_col_wrap_12 {
+      @include mobile {
+        > div {
+          order: 58;
+        }
+        .vc_col-sm-12:first-child {
+          order: 1;
+        }
+        .vc_col-sm-12:nth-child(2) {
+          order: 2;
+        }
+        .vc_col-sm-6.pricing-box:nth-child(3) {
+          order: 4;
+        }
+        .vc_col-sm-6.pricing-box:nth-child(4) {
+          order: 3;
+        }
+      }
       .vc_column-inner {
         .nectar-star-rating {
           flex-direction: column;

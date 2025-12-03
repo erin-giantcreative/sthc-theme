@@ -53,8 +53,13 @@ p.kicker,
 .sm-text {
   font-size: 14px;
 }
+@include mobile {
+  .xl-text-m {
+    font-size: 20px;
+  }
+}
 body h1, .heading-h1 {
-  font-size: 48px;
+  font-size: 46px;
   @include tablet {
     font-size: 64px;
   }

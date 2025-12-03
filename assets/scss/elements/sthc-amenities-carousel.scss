@@ -202,7 +202,10 @@
   }
 
   &__body {
-    margin-bottom: 24px
+    margin-bottom: 24px;
+    @include mobile {
+      font-size: 20px;
+    }
   }
 
   &__link {
