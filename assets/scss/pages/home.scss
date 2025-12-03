@@ -319,4 +319,91 @@
       }
     }
   }
+  &__image-slider {
+    .vc_column-inner {
+      .nectar-star-rating {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap: 6px;
+        .nectar-star-rating__icon {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          &:before {
+            line-height: 19px;
+          }
+          &:after {
+            content: '4.5/5';
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 1.33;
+            color: $tertiary-color;
+          }
+        }
+        .nectar-star-rating__content {
+          font-size: 14px;
+          margin-left: 0;
+        }
+      }
+      .cta-box {
+        position: absolute;
+        bottom: 0;
+        left:0;
+        @include mobile {
+          bottom: 6px;
+        }
+        white-space: nowrap;
+      }
+    }
+  }
+  &__free-tour-cta {
+    .row-bg-wrap {
+      .row-bg-overlay {
+        background: radial-gradient(81.53% 81.53% at 50% 50%, #FFF 8.89%, rgba(255, 255, 255, 0.00) 100%) !important;
+      }
+    }
+    .row_col_wrap_12 {
+      padding-top: 96px;
+      padding-bottom: 96px;
+    }
+  }
+  &__faq {
+    div[data-style="minimal"] {
+      .toggle {
+        border-bottom: none;
+        .toggle-title {
+          a {
+            color: $primary-color;
+            padding-top: 24px;
+            padding-bottom: 24px;
+          }
+          i {
+            &::before {
+              width: 24px;
+              top: 11px;
+              left: 0;
+              margin-top: 0;
+              background-color: $white;
+            }
+            margin-top: - 12px;
+            border: none;
+            width: 24px;
+            height: 24px;
+            &::after {
+              height: 24px;
+              top: 0;
+              left: 11px;
+              margin-left: 0;
+              background-color: $white;
+            }
+          }
+        }
+        > div {
+          .inner-toggle-wrap {
+            padding-bottom: 24px;
+          }
+        }
+      }
+    }
+  }
 }

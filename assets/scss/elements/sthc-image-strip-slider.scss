@@ -10,6 +10,7 @@
  * --sthc-image-strip-gap: spacing between items
  * --sthc-image-strip-radius: image corner radius
  */
+ @import '../variables';
 
 .sthc-image-strip-slider {
   --sthc-image-strip-gap: 12px;
@@ -17,9 +18,6 @@
 
   position: relative;
   width: 100%;
-  background: #000000;
-  color: #ffffff;
-  padding: 1.5rem 1.5rem 2.25rem;
 }
 
 .sthc-image-strip-slider__viewport {
@@ -57,13 +55,25 @@
 
 .sthc-image-strip-slider__arrow {
   border: 0;
-  padding: 0.5rem 0.9rem;
+  padding: 14px;
   cursor: pointer;
-  background: #ffffff;
-  color: #000000;
-  border-radius: 3px;
-  font-size: 1.1rem;
-  line-height: 1;
+  border: 2px solid $tertiary-color;
+  background-color: $tertiary-color !important;
+  transition: all .45s cubic-bezier(.25, 1, .33, 1) !important;
+  border-radius: 0;
+  span,
+  svg {
+    display: block;
+    width: 24px;
+    height: 24px;
+  }
+  &:hover {
+    background-color: transparent !important;
+    svg path {
+      fill: $tertiary-color;
+      stroke: $tertiary-color;
+    }
+  }
 
   &:focus-visible {
     outline: 2px solid #ffffff;
@@ -77,13 +87,20 @@
 }
 
 .sthc-image-strip-slider__arrow--next {
-  background: #f2c94c; // STHC accent style
+  border: 2px solid $primary-color;
+  background-color: $primary-color !important;
+
+  &:hover {
+    background-color: transparent !important;
+    svg path {
+      fill: $primary-color;
+      stroke: $primary-color;
+    }
+  }
 }
 
 .sthc-image-strip-slider__status {
-  margin: 0;
-  font-size: 0.85rem;
-  opacity: 0.85;
+  display: none;
 }
 
 /* Tablet: show two images */
