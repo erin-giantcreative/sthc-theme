@@ -65,32 +65,15 @@ body h1, .heading-h1 {
 .toggle>h3.toggle-title a,
 .heading-h3,
 body h3 {
-  font-size: 36px;
-  @include mobile {
-    br {
-      display: none;
-    }
-  }
-  @include tablet {
-    br {
-      display: none;
-    }
-  }
+  font-size: 36px !important;
+  line-height: 1.08 !important;
 }
-body h2,body h3.heading-h2,
+body .col h2,body h3.heading-h2,
 .h2 h3 {
   font-size: 36px !important;
   line-height: 1.08 !important;
-  @include mobile {
-    br {
-      display: none;
-    }
-  }
   @include tablet {
     font-size:38px !important;
-    br {
-      display: none;
-    }
   }
   @include desktop {
     font-size:46px !important;
@@ -100,7 +83,6 @@ body h2,body h3.heading-h2,
 body h4 {
   font-size: 24px;
 }
-
 body h5, .heading-5 {
   font-size:18px;
   @include tablet_up {

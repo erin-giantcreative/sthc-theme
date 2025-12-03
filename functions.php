@@ -219,4 +219,94 @@ function sthc_register_amenities_carousel_element() {
 	) );
 }
 
+/**
+ * Register CSS/JS for the STHC Image Strip Slider.
+ *
+ * Files are only enqueued from the template when the shortcode
+ * is rendered on a page.
+ */
+add_action( 'wp_enqueue_scripts', 'sthc_register_image_strip_assets', 5 );
+function sthc_register_image_strip_assets() {
+
+  // Get the theme version so browsers can cache-bust when you deploy.
+  if ( function_exists( 'nectar_get_theme_version' ) ) {
+    $version = nectar_get_theme_version();
+  } else {
+    $theme   = wp_get_theme();
+    $version = $theme ? $theme->get( 'Version' ) : null;
+  }
+
+  // CSS compiled from your SCSS.
+  wp_register_style(
+    'sthc-image-strip-slider',
+    get_stylesheet_directory_uri() . '/assets/css/sthc-image-strip-slider.min.css',
+    array(),
+    $version
+  );
+
+  // Small vanilla JS file for strip movement.
+  wp_register_script(
+    'sthc-image-strip-slider',
+    get_stylesheet_directory_uri() . '/assets/js/sthc-image-strip-slider.js',
+    array(),
+    $version,
+    true // Load in footer.
+  );
+}
+
+/**
+ * WPBakery element: STHC Image Strip Slider.
+ *
+ * Simple three-up gallery with previous/next arrows.
+ */
+add_action( 'vc_before_init', 'sthc_register_image_strip_slider_element' );
+function sthc_register_image_strip_slider_element() {
+
+  // Do nothing if VC is not active.
+  if ( ! function_exists( 'vc_map' ) ) {
+    return;
+  }
+
+  vc_map( array(
+    'name'        => __( 'STHC Image Strip Slider', 'salient-child' ),
+    'base'        => 'sthc_image_strip_slider',
+    'icon'        => 'icon-wpb-images-carousel',
+    'category'    => __( 'Content', 'salient-child' ),
+    'description' => __( 'Three-up image slider with arrows.', 'salient-child' ),
+
+    // Point to the PHP template file we will create next.
+    'html_template' => locate_template( 'custom-elements/sthc-image-strip-slider.php' ),
+
+    'params'      => array(
+      array(
+        'type'        => 'textfield',
+        'heading'     => __( 'Wrapper Extra Class', 'salient-child' ),
+        'param_name'  => 'extra_class',
+        'description' => __( 'Optional extra CSS class for this gallery.', 'salient-child' ),
+      ),
+      array(
+        'type'        => 'attach_images',
+        'heading'     => __( 'Images', 'salient-child' ),
+        'param_name'  => 'images',
+        'admin_label' => true,
+        'description' => __( 'Pick the images shown in the slider.', 'salient-child' ),
+      ),
+      array(
+        'type'        => 'textfield',
+        'heading'     => __( 'Border Radius (px)', 'salient-child' ),
+        'param_name'  => 'radius',
+        'value'       => '0',
+        'description' => __( 'Corner radius for each image.', 'salient-child' ),
+      ),
+      array(
+        'type'        => 'textfield',
+        'heading'     => __( 'Gap Between Images (px)', 'salient-child' ),
+        'param_name'  => 'gap',
+        'value'       => '12',
+        'description' => __( 'Horizontal gap between images.', 'salient-child' ),
+      ),
+    ),
+  ) );
+}
+
 ?>

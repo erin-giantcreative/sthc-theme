@@ -3,6 +3,13 @@
 
 .home-page {
   &__hero {
+    @include mobile {
+      .row-bg-wrap {
+        .row-bg-overlay {
+          background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 54.9%, #000 87.14%), linear-gradient(0deg, rgba(0, 0, 0, 0.80) 0%, rgba(0, 0, 0, 0.80) 100%) !important;
+        }
+      }
+    }
     .row_col_wrap_12 {
       @include mobile {
         padding: 40px 0 24px;
@@ -67,6 +74,39 @@
   }
   &__pricing-section {
     .row_col_wrap_12 {
+      .vc_column-inner {
+        .nectar-star-rating {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 6px;
+          .nectar-star-rating__icon {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            &:before {
+              line-height: 24px;
+            }
+            &:after {
+              content: '4.5/5';
+              font-size: 12px;
+              font-weight: 500;
+              line-height: 1.33;
+              color: $tertiary-color;
+            }
+          }
+          .nectar-star-rating__content {
+            font-size: 18px;
+            margin-left: 0;
+          }
+          @include desktop {
+            display: none;
+          }
+        }
+      }
+      @include desktop {
+        padding-top: 120px;
+        padding-bottom: 120px;
+      }
       justify-content: center;
       .pricing-box {
         max-width: 404px;
@@ -164,6 +204,117 @@
         }
         @include desktop {
           max-width: 882.5px;
+        }
+      }
+    }
+  }
+  &__why-sthc {
+    .row_col_wrap_12 {
+      .vc_col-sm-4 {
+        .img-with-aniamtion-wrap {
+          margin-bottom: 24px;
+        }
+        h3 {
+          color: $primary-color;
+        }
+        @include tablet {
+          width: 50%;
+        }
+      }
+    }
+  }
+  &__vist-the-club {
+    @include mobile {
+      .row-bg-wrap {
+        .row-bg-overlay {
+          background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 7.89%, #000 52.02%) !important;
+        }
+      }
+    }
+    .row_col_wrap_12 {
+      @include mobile {
+        padding-top: 354px;
+        padding-bottom: 64px;
+      }
+      @include tablet {
+        padding-top: 64px;
+        padding-bottom: 64px;
+      }
+      @include desktop {
+        padding-top: 140px;
+        padding-bottom: 140px;
+      }
+    }
+  }
+  &__vist-the-club,
+  &__about-the-club {
+    .vc_column-inner {
+      .nectar-star-rating {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        @include mobile {
+          align-items: center;
+        }
+        gap: 6px;
+        .nectar-star-rating__icon {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          &:before {
+            line-height: 19px;
+          }
+          &:after {
+            content: '4.5/5';
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 1.33;
+            color: $tertiary-color;
+          }
+        }
+        .nectar-star-rating__content {
+          font-size: 14px;
+          margin-left: 0;
+        }
+      }
+    }
+  }
+  &__about-the-club {
+    .row_col_wrap_12 {
+      padding-top: 0;
+      padding-bottom: 64px;
+      @include desktop {
+        padding-top: 120px;
+        padding-bottom: 120px;
+      }
+      .vc_column-inner {
+        .hover-wrap  {
+          box-shadow: -12px 12px 0 0 $primary-color !important;
+          img {
+            width: 100%
+          }
+        }
+      }
+    }
+  }
+  &__testimonials {
+    .row_col_wrap_12 {
+      padding-top: 0;
+      padding-bottom: 64px;
+      @include desktop {
+        padding-top: 120px;
+        padding-bottom: 120px;
+      }
+      .vc_col-sm-4 {
+        .column-overlay-layer  {
+          background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 47.26%, #000 93.69%) !important;
+        }
+        .yellow {
+          color: $primary-color;
+        }
+        @include mobile {
+          .xl-text {
+            font-size: 18px;
+          }
         }
       }
     }
