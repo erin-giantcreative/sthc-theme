@@ -71,7 +71,9 @@
     }
 
     /**
-     * Compute maximum index based on how many items are visible.
+     * Determine the maximum index based on how many items are visible.
+     * For looping, we still need this to calculate how far the track moves,
+     * but we no longer use it to disable arrows.
      */
     function getMaxIndex() {
       return Math.max(items.length - visibleCount, 0);
@@ -95,8 +97,10 @@
      * Enable or disable arrow buttons based on index bounds.
      */
     function updateButtons() {
-      prevBtn.disabled = index <= 0;
-      nextBtn.disabled = index >= getMaxIndex();
+      // Looping: arrows are always enabled
+      prevBtn.disabled = false;
+      nextBtn.disabled = false;
+
     }
 
     /**
@@ -109,18 +113,30 @@
       status.textContent = 'Showing image ' + current + ' of ' + total;
     }
 
+    /**
+     * Prev now wraps around.
+     */
     function goPrev() {
-      if (index <= 0) return;
+      var maxIndex = getMaxIndex();
       index -= 1;
+      if (index < 0) {
+        index = maxIndex; // Wrap to end
+      }
       applyTransform();
     }
 
+    /**
+     * Next now wraps around.
+     */
     function goNext() {
       var maxIndex = getMaxIndex();
-      if (index >= maxIndex) return;
       index += 1;
+      if (index > maxIndex) {
+        index = 0; // Wrap to start
+      }
       applyTransform();
     }
+
 
     prevBtn.addEventListener('click', goPrev);
     nextBtn.addEventListener('click', goNext);
