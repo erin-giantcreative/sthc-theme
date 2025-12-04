@@ -73,13 +73,13 @@ body {
             align-content: flex-start;
             .widget.widget_block.widget_media_image {
               img {
-                height: 50px;
+                height: 75px;
               }
             }
             @include tablet {
               .widget.widget_block.widget_media_image {
                 img {
-                  height: 70px;
+                  height: 75px;
                 }
               }
             }
@@ -97,9 +97,17 @@ body {
             > div:last-child {
               width: 100%;
             }
+            .widget.widget_block.widget_text:nth-child(3) {
+              @include mobile {
+                font-size: 18px;
+              }
+            }
             .widget.widget_block.widget_text:nth-child(2) {
               color: $primary-color;
               font-size: 12px;
+              @include mobile {
+                display: none;
+              }
               a {
                 text-decoration: underline;
                 font-size: 16px;
@@ -116,13 +124,19 @@ body {
                 align-items: center;
                 justify-content: space-between;
                 gap: 12px;
-                @include sm_mobile {
+                @include mobile {
                   flex-direction: column;
                   align-items: flex-start;
                 }
                 li {
                   padding: 0 !important;
                   a {
+                    @include mobile {
+                      font-family: 'Oswald';
+                      font-size: 24px;
+                      font-weight: 500;
+                      text-transform: uppercase;
+                    }
                     background-image: linear-gradient(#FDDC5C, #FDDC5C);
                   }
                 }
@@ -130,17 +144,36 @@ body {
             }
             > div:nth-child(2) {
               margin-bottom: 24px;
+              @include mobile {
+                a {
+                  text-decoration: underline;
+                  &:hover {
+                    text-decoration: none;
+                  }
+                }
+              }
               strong {
                 font-family: 'Oswald';
                 font-size: 24px;
                 font-weight: 500;
                 padding-bottom: 3px;
                 display: inline-block;
+                text-transform: uppercase;
+                @include mobile {
+                  font-family: "Futura", "futura-pt", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+                  font-size: 24px;
+                  font-weight: 500;
+                  line-height: 1.16;
+                  text-transform: none;
+                }
               }
             }
             > div:last-child {
               margin-bottom: 0 !important;
               a {
+                @include mobile {
+                  display: none;
+                }
                 display: inline-flex;
                 align-items: center;
                 gap: 6px;

@@ -33,13 +33,13 @@ p.kicker,
   }
   @include tablet {
     &-t {
-      font-family: "futura-pt", "Futura", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-family: "futura-pt", "Helvetica Neue", Helvetica, Arial, sans-serif;
       font-weight: 400;
     }
   }
   @include desktop {
     &-d {
-      font-family: "futura-pt", "Futura", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-family: "futura-pt", "Helvetica Neue", Helvetica, Arial, sans-serif;
       font-weight: 400;
     }
   }
@@ -73,10 +73,21 @@ body h3 {
   font-size: 36px !important;
   line-height: 1.08 !important;
 }
+.toggle>h3.toggle-title a{
+  @include mobile {
+    font-size:24px !important;
+  }
+  @include tablet {
+    font-size:30px !important;
+  }
+}
 body .col h2,body h3.heading-h2,
 .h2 h3 {
   font-size: 36px !important;
   line-height: 1.08 !important;
+  strong {
+    font-weight: 600 !important;
+  }
   @include tablet {
     font-size:38px !important;
   }
