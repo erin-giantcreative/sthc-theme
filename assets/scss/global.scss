@@ -86,7 +86,7 @@ body h3 {
     font-size:30px !important;
   }
 }
-body .col h2,body h3.heading-h2,
+body .col h2:not(.gform_submission_error),body h3.heading-h2,
 .h2 h3 {
   font-size: 36px !important;
   line-height: 1.08 !important;
