@@ -1,0 +1,29 @@
+@import '../variables';
+@import '../mixin';
+.book-a-free-tour {
+  &__form {
+    .row_col_wrap_12 {
+      .vc_column-inner {
+        h1 {
+          font-size: 36px !important;
+          line-height: 1.08 !important;
+          @include tablet {
+            font-size:38px !important;
+          }
+          @include desktop {
+            font-size:46px !important;
+          }
+        }
+        .gform_body {
+          max-width: 355px;
+        }
+        .hover-wrap  {
+          box-shadow: -12px 12px 0 0 $primary-color !important;
+          img {
+            width: 100%
+          }
+        }
+      }
+    }
+  }
+}

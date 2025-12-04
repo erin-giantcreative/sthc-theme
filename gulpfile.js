@@ -23,6 +23,7 @@ const cssHome = build('./assets/scss/pages/home.scss', 'home.min.css');
 const cssThankYou = build('./assets/scss/pages/thank-you.scss', 'thank-you.min.css');
 const cssAmenitiesCarousel = build('./assets/scss/elements/sthc-amenities-carousel.scss', 'sthc-amenities-carousel.min.css');
 const cssImageStripSlider = build('./assets/scss/elements/sthc-image-strip-slider.scss', 'sthc-image-strip-slider.min.css');
+const cssBookAFreeTour = build('./assets/scss/pages/book-a-free-tour.scss', 'book-a-free-tour.min.css');
 
 // group task
 const styles = parallel(
@@ -30,7 +31,8 @@ const styles = parallel(
   cssHome,
   cssThankYou,
   cssAmenitiesCarousel,
-  cssImageStripSlider
+  cssImageStripSlider,
+  cssBookAFreeTour
 );
 
 // watcher
