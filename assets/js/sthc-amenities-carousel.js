@@ -8,12 +8,15 @@
  *   - when the user hovers or focuses inside the carousel;
  *   - when the user presses the "Pause slide rotation" button;
  *   - when the browser / OS has prefers-reduced-motion enabled.
- * - When a user clicks a nav item:
+ * - When a user clicks the nav item or the prev/next arrows:
  *   - The matching slide becomes active.
  *   - The autoplay timer resets for that slide.
  * - Progress bar:
  *   - Each nav item has a small line at the bottom.
  *   - JS animates a scaleX() from 0 → 1 for the active slide.
+ * - Slider-style controls:
+ *   - Prev / Next buttons move to neighbouring slides.
+ *   - Status text announces "Showing slide X of Y" for AODA.
  */
 
 (function () {
@@ -34,9 +37,20 @@
   function initCarousel(root) {
     if (!root) return;
 
+    // Tab navigation items along the top.
     var tabs = toArray(root.querySelectorAll('[data-carousel-tab]'));
+
+    // Slide panels. Only one should be "is-active" at a time.
     var slides = toArray(root.querySelectorAll('[data-carousel-slide]'));
+
+    // Pause toggle button.
     var pauseButton = root.querySelector('[data-carousel-pause]');
+
+    // NEW: slider-style controls copied from STHC Image Strip.
+    // These are optional; if not present, the carousel still works.
+    var prevButton = root.querySelector('[data-carousel-prev]');
+    var nextButton = root.querySelector('[data-carousel-next]');
+    var statusEl   = root.querySelector('.sthc-amenities-carousel__status');
 
     if (tabs.length === 0 || slides.length === 0) {
       // Nothing to control.
@@ -66,8 +80,11 @@
         : false;
 
     /**
-     * Read autoplay duration from the current slide.
+     * Read autoplay duration from the current tab.
      * Falls back to 8000ms if not set or invalid.
+     *
+     * @param {number} index Slide index.
+     * @returns {number} Duration in ms.
      */
     function getDurationForIndex(index) {
       var tab = tabs[index];
@@ -81,23 +98,44 @@
     }
 
     /**
+     * Update the live status text.
+     * Example: "Showing slide 2 of 5".
+     * This is mostly for screen readers.
+     */
+    function updateStatus() {
+      if (!statusEl) return;
+
+      var humanIndex = currentIndex + 1;
+      var total = slides.length;
+
+      statusEl.textContent = 'Showing slide ' + humanIndex + ' of ' + total;
+    }
+
+    /**
      * Update which slide is active.
      * Handles:
-     * - aria-selected
-     * - tabindex
-     * - "hidden" attribute
-     * - is-active CSS class
+     * - aria-selected on tabs
+     * - tabindex on tabs
+     * - aria-hidden on slides
+     * - is-active CSS class on slides and tabs
+     *
+     * @param {number} index New active slide index.
+     * @param {boolean} userInitiated True if change came from user action.
      */
     function setActiveSlide(index, userInitiated) {
       if (index === currentIndex && !userInitiated) {
+        // Same slide and not user-forced; nothing to do.
         return;
       }
 
-      if (index < 0 || index >= slides.length) {
+      // Wrap out-of-bound indices so the carousel loops.
+      if (index < 0) {
+        index = slides.length - 1;
+      } else if (index >= slides.length) {
         index = 0;
       }
 
-      // Deactivate current tab + slide.
+      // Update tabs (top navigation).
       tabs.forEach(function (tab, i) {
         var isActive = i === index;
         tab.classList.toggle('is-active', isActive);
@@ -105,13 +143,20 @@
         tab.setAttribute('tabindex', isActive ? '0' : '-1');
       });
 
+      // Update slides.
       slides.forEach(function (slide, i) {
         var isActive = i === index;
         slide.classList.toggle('is-active', isActive);
+
+        // Slides are visually hidden with opacity, so aria-hidden keeps
+        // assistive tech in sync with what is visible.
         slide.setAttribute('aria-hidden', isActive ? 'false' : 'true');
       });
 
       currentIndex = index;
+
+      // Keep status text in sync whenever slides change.
+      updateStatus();
 
       // Reset and restart autoplay after a user action,
       // unless autoplay is paused or reduced motion is active.
@@ -121,13 +166,28 @@
 
     /**
      * Move to the next slide in the set.
+     *
+     * @param {boolean} userInitiated Whether this was triggered by user input.
      */
-    function goToNextSlide() {
+    function goToNextSlide(userInitiated) {
       var nextIndex = currentIndex + 1;
       if (nextIndex >= slides.length) {
         nextIndex = 0;
       }
-      setActiveSlide(nextIndex, false);
+      setActiveSlide(nextIndex, !!userInitiated);
+    }
+
+    /**
+     * Move to the previous slide in the set.
+     *
+     * @param {boolean} userInitiated Whether this was triggered by user input.
+     */
+    function goToPreviousSlide(userInitiated) {
+      var prevIndex = currentIndex - 1;
+      if (prevIndex < 0) {
+        prevIndex = slides.length - 1;
+      }
+      setActiveSlide(prevIndex, !!userInitiated);
     }
 
     /**
@@ -199,7 +259,7 @@
 
         if (elapsed >= autoplayDuration) {
           // Slide complete. Move to next and restart.
-          goToNextSlide();
+          goToNextSlide(false);
           return;
         }
 
@@ -306,23 +366,38 @@
     // Event wiring
     // ------------------------------------------------------------------
 
+    // Tab navigation.
     tabs.forEach(function (tab) {
       tab.addEventListener('click', onTabClick);
       tab.addEventListener('keydown', onTabKeydown);
     });
 
+    // Pause button.
     if (pauseButton) {
       pauseButton.addEventListener('click', onPauseButtonClick);
     }
 
+    // NEW: slider-style prev/next buttons.
+    if (prevButton) {
+      prevButton.addEventListener('click', function () {
+        goToPreviousSlide(true);
+      });
+    }
+
+    if (nextButton) {
+      nextButton.addEventListener('click', function () {
+        goToNextSlide(true);
+      });
+    }
+
+    // Pause on hover / focus.
     root.addEventListener('mouseenter', onMouseEnter);
     root.addEventListener('mouseleave', onMouseLeave);
     root.addEventListener('focusin', onFocusIn);
     root.addEventListener('focusout', onFocusOut);
 
+    // React if user changes system motion preference while page is open.
     if (reduceMotionQuery && typeof reduceMotionQuery.addEventListener === 'function') {
-      // If the user changes their system motion preference while the
-      // page is open, react to that.
       reduceMotionQuery.addEventListener('change', function (event) {
         prefersReducedMotion = event.matches;
         if (prefersReducedMotion) {

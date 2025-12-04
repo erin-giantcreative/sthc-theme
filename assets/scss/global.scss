@@ -66,6 +66,11 @@ body h1, .heading-h1 {
   @include desktop {
     font-size: 86px;
   }
+  @include sm_mobile {
+    br {
+      display: none;
+    }
+  }
 }
 .toggle>h3.toggle-title a,
 .heading-h3,
@@ -93,6 +98,11 @@ body .col h2,body h3.heading-h2,
   }
   @include desktop {
     font-size:46px !important;
+  }
+  @include sm_mobile {
+    br {
+      display: none;
+    }
   }
 }
 .heading-h4,

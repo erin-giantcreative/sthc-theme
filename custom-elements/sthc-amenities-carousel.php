@@ -235,6 +235,42 @@ ob_start();
 				<?php endforeach; ?>
 			</div>
 
+          <div class="sthc-amenities-carousel__controls">
+
+            <button
+                type="button"
+                class="sthc-amenities-carousel__control-arrow sthc-amenities-carousel__control-arrow--prev"
+                data-carousel-prev="1"
+                aria-label="<?php esc_attr_e( 'Previous slide', 'salient-child' ); ?>"
+            >
+                <span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path d="M12.207 5.70718L10.7928 4.29297L3.08569 12.0001L10.7928 19.7072L12.207 18.293L6.91404 13H20.9999V11H6.9142L12.207 5.70718Z" fill="black" stroke="black"/>
+</svg></span>
+            </button>
+
+            <p class="sthc-amenities-carousel__status" aria-live="polite">
+                <?php
+                printf(
+                    esc_html__( 'Showing slide %1$d of %2$d', 'salient-child' ),
+                    1,
+                    count($slides)
+                );
+                ?>
+            </p>
+
+            <button
+                type="button"
+                class="sthc-amenities-carousel__control-arrow sthc-amenities-carousel__control-arrow--next"
+                data-carousel-next="1"
+                aria-label="<?php esc_attr_e( 'Next slide', 'salient-child' ); ?>"
+            >
+                <span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path d="M11.7929 18.293L13.2071 19.7072L20.9142 12.0001L13.2071 4.29297L11.7929 5.70718L17.0859 11.0002H3V13.0002H17.0857L11.7929 18.293Z" fill="black" stroke="black"/>
+</svg></span>
+            </button>
+
+        </div>
+
 			<!--
 				Pause button:
 				- Toggles autoplay on/off.

@@ -15,31 +15,24 @@
   }
 
   &__header {
-    position: relative;
-    z-index: 3;
     display: flex;
-    align-items: center;
+    align-items: stretch;
+    gap: 24px;
+    position: absolute;
+    inset: 0 0 auto;
+    z-index: 3;
+    padding: 24px 12px 0;
   }
 
   &__nav {
-    position: absolute;
-    inset: 0 0 auto;
     display: flex;
     flex: 1 1 auto;
-    padding: 24px 12px 0;
-    overflow: auto;
-    &::-webkit-scrollbar { 
-      display: none;  /* Older Safari and Chromium */
-    }
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    position: relative;
   }
 
   &__nav-item {
     font-family: "Futura", "futura-pt", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    flex: 1 1 auto;
     padding: 0 0 12px;
-    position: relative;
     text-align: left;
     border: 0;
     color: $tertiary-color;
@@ -50,14 +43,23 @@
     cursor: pointer;
     text-transform: none;
     outline: none;
-    .sthc-amenities-carousel__nav-label {
-      padding-right: 48px;
+    @media only screen and (max-width: 999px) {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
     }
-    &:last-child {
-      text-align: right;
-      min-width: none;
+    @include desktop {
+      position: relative;
+      flex: 1 1 auto;
       .sthc-amenities-carousel__nav-label {
-        padding-right: 0;
+        padding-right: 48px;
+      }
+      &:last-child {
+        text-align: right;
+        min-width: none;
+        .sthc-amenities-carousel__nav-label {
+          padding-right: 0;
+        }
       }
     }
     &:focus-visible {
@@ -68,7 +70,9 @@
 
   &__nav-label {
     display: inline-block;
-    white-space: nowrap;
+    @include desktop {
+      white-space: nowrap;
+    }
   }
 
   &__nav-progress {
@@ -93,6 +97,9 @@
 
   &__nav-item {
     &.is-active {
+      @media only screen and (max-width: 999px) {
+        opacity: 1;
+      }
       .sthc-amenities-carousel__nav-progress {
         background: rgba(255, 255, 255, 0.5);
       }
@@ -165,6 +172,55 @@
     }
   }
 
+  &__controls {
+    display: inline-flex;
+    gap: 12px;
+    z-index: 3;
+    @include desktop {
+      display: none
+    }
+  }
+
+  &__control-arrow {
+    border: 0;
+    padding: 8px;
+    cursor: pointer;
+    border: 2px solid $tertiary-color;
+    background-color: $tertiary-color !important;
+    transition: all .45s cubic-bezier(.25, 1, .33, 1) !important;
+    border-radius: 0;
+    span,
+    svg {
+      display: block;
+      width: 20px;
+      height: 20px;
+    }
+    &:hover {
+      background-color: transparent !important;
+      svg path {
+        fill: $tertiary-color;
+        stroke: $tertiary-color;
+      }
+    }
+  }
+
+  &__control-arrow--next {
+    border: 2px solid $primary-color;
+    background-color: $primary-color !important;
+
+    &:hover {
+      background-color: transparent !important;
+      svg path {
+        fill: $primary-color;
+        stroke: $primary-color;
+      }
+    }
+  }
+
+  &__status {
+    display: none;
+  }
+
   &__media {
     position: absolute;
     inset: 0;
@@ -176,6 +232,9 @@
       inset: 0;
       background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 36.78%, rgba(0, 0, 0, 0.60) 71.83%), linear-gradient(0deg, rgba(0, 0, 0, 0.40) 0%, rgba(0, 0, 0, 0.40) 100%);
       pointer-events: none;
+      @include mobile {
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.80) 9.86%, rgba(0, 0, 0, 0.00) 33.11%), linear-gradient(180deg, rgba(0, 0, 0, 0.00) 48.86%, rgba(0, 0, 0, 0.80) 73.2%);
+      }
     }
   }
 
